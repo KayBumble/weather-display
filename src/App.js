@@ -1,25 +1,37 @@
 import './App.css';
+import { useEffect, useState } from "react";
 
-async function displayWeather(){
-  const weather = await getWeather("New York, NY");
-}
+
 
 function App() {
 
-  const API_KEY=
+const [weather, setWeather] = useState(null); //state to hold weather data
 
+const fetchWeather = async () => { //calls api
+  const url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&daily=temperature_2m_max,temperature_2m_min&hourly=temperature_2m,rain,wind_speed_10m,wind_direction_10m,cloud_cover,surface_pressure'
+
+  const result = await fetch(url);
+  const data = await result.json();
+  setWeather(data); //sets the state with the data from the api
+}
+
+useEffect(() => { //calls the fetchWeather function when the component mounts
+  fetchWeather();
+}, []);
+
+  
   return(
     <div className="wrapper">
       <div className="header">
-        <h1 className="city">London</h1>
-        <p className="temperature">30°C</p>
-        <p className="condition">Sunny</p>
-        <h2 className="date">Monday, 1 January</h2>
+        <h1 className="city">{weather?.city}</h1>
+        <p className="temperature">{weather?.temperature}°C</p>
+        <p className="condition">{weather?.condition}</p>
+        <h2 className="date">{weather?.date}</h2>
         
       </div>
       <div className="weather-details">
         <div>
-          <p>Humidity: 60%</p>
+          <p>Humidity: {weather?.humidity}%</p>
           </div>
         <div>
           <p>Wind: 10 km/h</p>
