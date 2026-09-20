@@ -94,7 +94,7 @@ const handleSearch=() => { //handles the search input
         
         <div className="forecast-days">
         {weather?.weekDays?.map((date, index) => {
-  const weekday = new Date(date).toLocaleDateString("en-GB", { weekday: "long" });
+  const weekday = new Date(date).toLocaleDateString("en-GB", { weekday: "short" });
 
   return (
     <div className="forecast-day" key={index}>

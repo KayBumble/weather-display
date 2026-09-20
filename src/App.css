@@ -42,6 +42,8 @@ body{
 .forecast{
   border-top: 1px solid rgba(255, 255, 255, 0.3);
   padding-top: 1rem;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .forecast-header{
@@ -51,11 +53,22 @@ body{
 
 .forecast-days{
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  
 }
 
 .forecast-day{
   font-weight:bold;
+  background: #7cb9ff;
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 180px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(251, 250, 250, 0.1);
+  border: 1px solid #8fc3ff;
+  flex: 1 1 150px;
 }
 
 
